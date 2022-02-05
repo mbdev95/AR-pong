@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="Augmented reality box appearing over marker" />
+        <title>AR Pong</title>
+        <script src="./js/aframe.min.js" ></script>
+        <script src="./js/aframe-ar.min.js"></script>
+    </head>
+    <boby>
+        <h1>AR Pong</h1>
+        <a-scene embedded vr-mode-ui="enabled: false" arjs="debugUIEnabled: false;">
+            <a-marker type="pattern" url="./data/pattern-pong.patt">
+                <a-box color="blue" position="0 0 0" height="1" width="1" opacity="0.9" side="double"></a-box>
+            </a-marker>
+            <a-entity camera></a-entity>
+        </a-scene>
+    </boby>
+</html>

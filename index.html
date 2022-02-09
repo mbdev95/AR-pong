@@ -13,8 +13,14 @@
     <boby>
         <h1>Augmented Reality Ping Pong</h1>
         <a-scene embedded vr-mode-ui="enabled: false" arjs="debugUIEnabled: false;">
+            <a-assets>
+                <a-assests-item id="racket-1" src="models/racket-1.glb"></a-assests-item>
+                <a-assets-item id="racket-2" src="models/racket-2.glb"></a-assets-item>
+            </a-assets>
             <a-marker type="pattern" url="./data/pattern-pong.patt">
+                <a-entity gltf-model="#racket-1" position="" rotation="30 90 0"></a-entity>
                 <a-sphere scale="0.06 0.06 0.06"></a-sphere>
+                <a-entity gltf-model="#racket-2" rotation="30 90 0"></a-entity>
             </a-marker>
             <a-entity camera></a-entity>
         </a-scene>

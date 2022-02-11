@@ -12,17 +12,17 @@
     </head>
     <boby>
         <h1>Augmented Reality Ping Pong</h1>
-        <a-scene embedded vr-mode-ui="enabled: false" arjs="debugUIEnabled: false;">
+        <a-scene embedded vr-mode-ui="enabled: false" arjs="debugUIEnabled: false">
             <a-assets>
                 <a-assests-item id="racket-1" src="models/racket-1.glb"></a-assests-item>
                 <a-assets-item id="racket-2" src="models/racket-2.glb"></a-assets-item>
                 <a-assets-item id="balloon-net" src="models/ping-pong-table.glb"></a-assets-item>
             </a-assets>
             <a-marker type="pattern" url="./data/pattern-pong.patt">
-                <a-entity gltf-model="#racket-1" position="-0.125 -0.2 0" rotation="30 90 0" scale="1.25 1.25 1.25"></a-entity>
-                <!-- <a-sphere scale="0.06 0.06 0.06"></a-sphere> -->
-                <a-entity gltf-model="#racket-2" rotation="30 90 0" position="0.65 0 0.725" scale="1.25 1.25 1.25"></a-entity>
+                <a-entity gltf-model="#racket-1" position="-0.125 -0.2 0" depth="0.05" rotation="30 90 0" scale="1.25 1.25 1.25"></a-entity>
+                <a-sphere scale="0.025 0.025 0.025" position="-0.175 -0.145 0"></a-sphere>
                 <a-entity gltf-model="#balloon-net" position="0 0 0.55" rotation="0 90 -90" scale="0.75 0.75 0.75" ></a-entity>
+                <a-entity gltf-model="#racket-2" position="0.65 -0.4 0.725" rotation="30 90 0" scale="1.25 1.25 1.25"></a-entity>
             </a-marker>
             <a-entity camera></a-entity>
         </a-scene>

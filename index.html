@@ -17,9 +17,11 @@
                     const racket1Entity = document.querySelector("a-entity[gltf-model$='1']");
                     const racket2Entity = document.querySelector("a-entity[gltf-model$='2']");
                     const balloonNetEntity = document.querySelector("a-entity[gltf-model^='#balloon']");
+                    const box = document.getElementsByTagName('a-box')[0];
                     racket1Entity.setAttribute("animation", "property: position; to: -0.125 -0.2 0; dur: 5000; easing: easeOutQuad;");
                     racket2Entity.setAttribute("animation", "property: position; to: 0.55 0.2 0.625; dur: 5000; easing: easeOutQuad;");
                     balloonNetEntity.setAttribute("animation", "property: position; to: 0 0 0.55; dur: 7000; easing: easeOutElastic; elasticity: 200");
+                    box.setAttribute("animation", "property: position; to: 0.22 0.07 0.44; dur: 7000; easing: easeOutQuad;");
                 } );
             }
         </script>
@@ -33,6 +35,11 @@
                 <a-assets-item id="balloonNet" src="models/ping-pong-table.glb"></a-assets-item>
             </a-assets>
             <a-marker type="pattern" url="./data/pattern-pong.patt">
+                <a-box width="1.2" height="1.8" depth="0.01" position="0 0 3" color="#065e26" >
+                    <a-box width="1.2" height="0.015" depth="0.01" position="0 0.91 0" ></a-box>
+                    <a-box width="1.2" height="0.015" depth="0.01" position="0 -0.91 0" ></a-box>
+                    <a-box width="1.08" height="0.015" depth="0.0001" position="0 0 -0.01" ></a-box>
+                </a-box>
                 <a-entity 
                     gltf-model="#racket-1" 
                     position="0 0 -3" 

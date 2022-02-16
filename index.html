@@ -13,21 +13,30 @@
         <script>
             window.onload = () => {
                 const scene = document.querySelector('a-scene');
+                let markerFoundEventNumber = 0;
                 scene.addEventListener("markerFound", () => {
-                    const racket1Entity = document.querySelector("a-entity[gltf-model$='1']");
-                    const racket2Entity = document.querySelector("a-entity[gltf-model$='2']");
-                    const balloonNetEntity = document.querySelector("a-entity[gltf-model^='#balloon']");
-                    const box = document.getElementsByTagName('a-box')[0];
-                    racket1Entity.setAttribute("animation", "property: position; to: -0.125 -0.2 0; dur: 5000; easing: easeOutQuad;");
-                    racket2Entity.setAttribute("animation", "property: position; to: 0.55 0.2 0.625; dur: 5000; easing: easeOutQuad;");
-                    balloonNetEntity.setAttribute("animation", "property: position; to: 0 0 0.55; dur: 7000; easing: easeOutElastic; elasticity: 200");
-                    box.setAttribute("animation", "property: position; to: 0.22 0.07 0.44; dur: 7000; easing: easeOutQuad;");
+                    markerFoundEventNumber += 1;
+                    if ( markerFoundEventNumber === 1 ) {
+                        const racket1Entity = document.querySelector("a-entity[gltf-model$='1']");
+                        const racket2Entity = document.querySelector("a-entity[gltf-model$='2']");
+                        const balloonNetEntity = document.querySelector("a-entity[gltf-model^='#balloon']");
+                        const box = document.getElementsByTagName('a-box')[0];
+                        const tableSides = document.querySelectorAll("a-box a-box[depth='0.01']");
+                        racket1Entity.setAttribute("animation", "property: position; to: -0.125 -0.6 0.2; dur: 5000; easing: easeOutQuad;");
+                        racket2Entity.setAttribute("animation", "property: position; to: 0.55 0.6 0.3; dur: 5000; easing: easeOutQuad;");
+                        balloonNetEntity.setAttribute("animation", "property: position; to: 0 0 0.55; dur: 7000; easing: easeOutElastic; elasticity: 200");
+                        box.setAttribute("animation", "property: position; to: 0.22 0.07 0.44; dur: 7000; easing: easeOutQuad;");
+                        tableSides.forEach((side, index) => {
+                            const position = side.getAttribute("position");
+                            side.setAttribute("animation", `property: position; from: ${index + 1} ${index + 1} ${index + 1}; to: ${position.x} ${position.y} ${position.z}; dur: 7000; easing: easeOutQuad; begin: onload;`); 
+                        } );
+                    }
                 } );
             }
         </script>
     </head>
     <boby>
-        <h1>Augmented Reality Ping Pong</h1>
+        <h1 style="text-align: center;">Augmented Reality Ping Pong</h1>
         <a-scene embedded vr-mode-ui="enabled: false" arjs="debugUIEnabled: false">
             <a-assets>
                 <a-assests-item id="racket-1" src="models/racket-1.glb"></a-assests-item>
@@ -39,17 +48,20 @@
                     <a-box width="1.2" height="0.015" depth="0.01" position="0 0.91 0" ></a-box>
                     <a-box width="1.2" height="0.015" depth="0.01" position="0 -0.91 0" ></a-box>
                     <a-box width="1.08" height="0.015" depth="0.0001" position="0 0 -0.01" ></a-box>
+                    <a-box width="0.015" height="1.83" depth="0.01" position="-0.608 0 0" ></a-box>
+                    <a-box width="0.015" height="1.83" depth="0.01" position="0.608 0 0" ></a-box>
+                    <a-box width="0.015" height="1.8" depth="0.0001" position="0 0.015 -0.007" ></a-box>
                 </a-box>
                 <a-entity 
                     gltf-model="#racket-1" 
-                    position="0 0 -3" 
+                    position="0 0 3" 
                     depth="0.05" 
-                    rotation="30 90 0" 
+                    rotation="40 80 0" 
                     scale="1.25 1.25 1.25"
                 ></a-entity>
                 <a-sphere 
                     scale="0.025 0.025 0.025" 
-                    position="-0.175 -0.125 0"
+                    position="-0.175 -0.5 0.18"
                 ></a-sphere>
                 <a-entity 
                     gltf-model="#balloonNet" 
